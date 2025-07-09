@@ -1,10 +1,10 @@
-import TaskFilter from "./TasksFilter";
+import TasksFilter from "./TasksFilter";
 
 function Footer({ tasksListCount, currentFilter, onChangeFilter }) {
 	return (
 		<footer className="footer">
 			<span className="todo-count">{tasksListCount} items left</span>
-			<TaskFilter 
+			<TasksFilter 
 				currentFilter={currentFilter} 
 				onChangeFilter={onChangeFilter} 
 			/>
