@@ -3,10 +3,10 @@ import Task from "./Task"
 function TaskList({ tasks = [] }) {
 	return (
 		<ul className="todo-list">
-			{tasks.map((task, index) => {
+			{tasks.map((task) => {
 				return (
 					<Task 
-						key = {index}
+						key = {task.id}
 						description = {task.description}
 						created = {task.created}
 						completed = {task.completed}

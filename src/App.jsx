@@ -4,12 +4,14 @@ import TaskList from "./components/TaskList";
 import NewTaskForm from "./components/NewTaskForm";
 import Footer from "./components/Footer";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 // Установить пакет npm install date-fns
 
 function App() {
 	const tasks = [
 		{
+			id: uuidv4(),
 			description: "Completed task",
 			created:
         "created " +
@@ -20,6 +22,7 @@ function App() {
 			editing: false,
 		},
 		{
+			id: uuidv4(),
 			description: "Editing task",
 			created:
         "created " +
@@ -30,6 +33,7 @@ function App() {
 			editing: true,
 		},
 		{
+			id: uuidv4(),
 			description: "Active task",
 			created:
         "created " +
