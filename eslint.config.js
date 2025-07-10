@@ -29,7 +29,7 @@ export default [
 				{ allowConstantExport: true },
 			],
 			semi: "off",
-			indent: [2, "tab"],
+			// indent: [2, "tab"],
 		},
 	},
 ];

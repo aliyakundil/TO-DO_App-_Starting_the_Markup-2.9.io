@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 // Установить пакет npm install date-fns
 
 function App() {
-	const tasks = [
+	const [tasks, setTasks] = useState([
 		{
 			id: uuidv4(),
 			description: "Completed task",
@@ -43,13 +43,17 @@ function App() {
 			completed: false,
 			editing: false,
 		},
-	];
+	]);
 
 	const [currentFilter, setCurrentFilter] = useState("All");
 
 	function onChangeFilter(newFilter) {
 		setCurrentFilter(newFilter);
 	}
+
+  function deleteTask(taskId) {
+    setTasks((prevTask) => prevTask.filter((task) => task.id !== taskId))
+  }
 
 	const tasksListCount = tasks.filter((task) => !task.completed).length;
 
@@ -58,10 +62,17 @@ function App() {
 			<section className="todoapp">
 				<header className="header">
 					<h1>todos</h1>
-					<NewTaskForm />
+					<NewTaskForm setTasks={setTasks} />
 				</header>
 				<section className="main">
-					<TaskList tasks={tasks} />
+					<TaskList tasks={
+						currentFilter === 'All' 
+							? tasks : currentFilter === 'Active' 
+								? tasks.filter((task) => !task.completed) 
+								: tasks.filter((task) => task.completed)
+					} 
+          onDelete={deleteTask} 
+          />
 				</section>
 				<Footer
 					tasksListCount={tasksListCount}
