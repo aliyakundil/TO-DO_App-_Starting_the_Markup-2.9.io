@@ -57,6 +57,10 @@ function App() {
 
 	const tasksListCount = tasks.filter((task) => !task.completed).length;
 
+  function changeCompleted(id) {
+    setTasks(currentTask => currentTask.map(task => task.id === id ? {...task, completed: !task.completed} : task))
+  }
+
 	return (
 		<>
 			<section className="todoapp">
@@ -72,6 +76,7 @@ function App() {
 								: tasks.filter((task) => task.completed)
 					} 
           onDelete={deleteTask} 
+          onChange={changeCompleted}
           />
 				</section>
 				<Footer

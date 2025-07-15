@@ -1,6 +1,6 @@
 import Task from "./Task"
 
-function TaskList({ tasks = [], onDelete }) {
+function TaskList({ tasks = [], onDelete, onChange }) {
 	return (
 		<ul className="todo-list">
 			{tasks.map((task) => {
@@ -13,6 +13,7 @@ function TaskList({ tasks = [], onDelete }) {
 						editing = {task.editing}
 						task= {task}
 						onDelete={onDelete}
+            onChange={onChange}
 					/>
 				)
 			})}
