@@ -1,19 +1,17 @@
 import Task from "./Task"
 
-function TaskList({ tasks = [], onDelete, onChange }) {
+function TaskList({ tasks = [], onDelete, onToggleCompleted, onEditing, onDescrtiption }) {
 	return (
 		<ul className="todo-list">
 			{tasks.map((task) => {
 				return (
 					<Task 
-						key = {task.id}
-						description = {task.description}
-						created = {task.created}
-						completed = {task.completed}
-						editing = {task.editing}
-						task= {task}
-						onDelete={onDelete}
-            onChange={onChange}
+            key={task.id}
+            task={task}
+            onDelete={onDelete}
+            onToggleCompleted={onToggleCompleted}
+            onEditing={onEditing}
+            onDescrtiption={onDescrtiption}
 					/>
 				)
 			})}

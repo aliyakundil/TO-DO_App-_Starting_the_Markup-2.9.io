@@ -57,9 +57,21 @@ function App() {
 
 	const tasksListCount = tasks.filter((task) => !task.completed).length;
 
-  function changeCompleted(id) {
-    setTasks(currentTask => currentTask.map(task => task.id === id ? {...task, completed: !task.completed} : task))
+  function toggleCompleted(id) {
+    setTasks(prevTask => prevTask.map(task => task.id === id ? {...task, completed: !task.completed} : task))
   }
+
+  function changeEditing(id) {
+    setTasks(prevTask => prevTask.map(task => task.id === id ? {...task, editing: !task.editing} : task ))
+  }
+
+  function changeDescrtiption(id, newDescription) {
+  setTasks((prevTasks) =>
+    prevTasks.map((task) =>
+      task.id === id ? { ...task, description: newDescription } : task
+    )
+  );
+}
 
 	return (
 		<>
@@ -76,7 +88,9 @@ function App() {
 								: tasks.filter((task) => task.completed)
 					} 
           onDelete={deleteTask} 
-          onChange={changeCompleted}
+          onToggleCompleted={toggleCompleted}
+          onEditing={changeEditing}
+          onDescrtiption={changeDescrtiption}
           />
 				</section>
 				<Footer
