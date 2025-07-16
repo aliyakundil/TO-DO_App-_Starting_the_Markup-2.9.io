@@ -49,21 +49,33 @@ function App() {
 
 	function onChangeFilter(newFilter) {
 		setCurrentFilter(newFilter);
-	}
+	};
 
   function deleteTask(taskId) {
-    setTasks((prevTask) => prevTask.filter((task) => task.id !== taskId))
-  }
+    setTasks((prevTask) => 
+      prevTask.filter((task) => 
+        task.id !== taskId
+      )
+    );
+  };
 
 	const tasksListCount = tasks.filter((task) => !task.completed).length;
 
   function toggleCompleted(id) {
-    setTasks(prevTask => prevTask.map(task => task.id === id ? {...task, completed: !task.completed} : task))
-  }
+    setTasks(prevTask => 
+      prevTask.map(task => 
+        task.id === id ? {...task, completed: !task.completed} : task
+      )
+    );
+  };
 
   function changeEditing(id) {
-    setTasks(prevTask => prevTask.map(task => task.id === id ? {...task, editing: !task.editing} : task ))
-  }
+    setTasks(prevTask => 
+      prevTask.map(task => 
+        task.id === id ? {...task, editing: !task.editing} : task 
+      )
+    );
+  };
 
   function changeDescrtiption(id, newDescription) {
   setTasks((prevTasks) =>
