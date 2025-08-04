@@ -30,7 +30,7 @@ function App() {
         	addSuffix: true,
         }),
 			completed: false,
-			editing: true,
+			editing: false,
 		},
 		{
 			id: uuidv4(),
@@ -80,7 +80,7 @@ function App() {
   function changeDescrtiption(id, newDescription) {
   setTasks((prevTasks) =>
     prevTasks.map((task) =>
-      task.id === id ? { ...task, description: newDescription } : task
+      task.id === id ? { ...task, description: newDescription, completed: true } : task
     )
   );
 }
