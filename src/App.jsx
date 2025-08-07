@@ -59,6 +59,10 @@ function App() {
     );
   };
 
+  function deleteTaskAll() {
+    setTasks([]);
+  };
+
 	const tasksListCount = tasks.filter((task) => !task.completed).length;
 
   function toggleCompleted(id) {
@@ -78,19 +82,38 @@ function App() {
   };
 
   function changeDescrtiption(id, newDescription) {
-  setTasks((prevTasks) =>
-    prevTasks.map((task) =>
-      task.id === id ? { ...task, description: newDescription, completed: true } : task
-    )
-  );
-}
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, description: newDescription, completed: true } : task
+      )
+    );
+  }
+
+  function newTask(description) {
+    const task = {
+      id: uuidv4(),
+      description,
+      created:
+        "created " +
+        formatDistanceToNow(new Date("2025-07-01T12:00:00"), {
+          addSuffix: true,
+        }),
+      completed: false,
+      editing: false,
+    }
+
+    setTasks((prevTasks) => [...prevTasks, task]);
+  }
 
 	return (
 		<>
 			<section className="todoapp">
 				<header className="header">
 					<h1>todos</h1>
-					<NewTaskForm setTasks={setTasks} />
+					<NewTaskForm 
+            setTasks = {setTasks} 
+            onNewTask = {newTask}
+          />
 				</header>
 				<section className="main">
 					<TaskList tasks={
@@ -106,9 +129,10 @@ function App() {
           />
 				</section>
 				<Footer
-					tasksListCount={tasksListCount}
-					currentFilter={currentFilter}
-					onChangeFilter={onChangeFilter}
+					tasksListCount = {tasksListCount}
+					currentFilter = {currentFilter}
+					onChangeFilter = {onChangeFilter}
+          deleteTaskAll = {deleteTaskAll}
 				/>
 			</section>
 		</>

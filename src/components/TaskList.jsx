@@ -6,12 +6,12 @@ function TaskList({ tasks = [], onDelete, onToggleCompleted, onEditing, onDescrt
 			{tasks.map((task) => {
 				return (
 					<Task 
-            key={task.id}
-            task={task}
-            onDelete={onDelete}
-            onToggleCompleted={onToggleCompleted}
-            onEditing={onEditing}
-            onDescrtiption={onDescrtiption}
+						key={task.id}
+						task={task}
+						onDelete={onDelete}
+						onToggleCompleted={onToggleCompleted}
+						onEditing={onEditing}
+						onDescrtiption={onDescrtiption}
 					/>
 				)
 			})}
