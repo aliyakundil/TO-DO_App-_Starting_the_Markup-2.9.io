@@ -59,8 +59,8 @@ function App() {
     );
   };
 
-  function deleteTaskAll() {
-    setTasks([]);
+  function deleteTaskAllEnd() {
+    setTasks((prevTasks) => prevTasks.filter((task) => !task.completed));
   };
 
 	const tasksListCount = tasks.filter((task) => !task.completed).length;
@@ -105,36 +105,41 @@ function App() {
     setTasks((prevTasks) => [...prevTasks, task]);
   }
 
+  function handleSubmit(e) {
+      e.preventDefault();
+    }
+
 	return (
 		<>
-			<section className="todoapp">
-				<header className="header">
-					<h1>todos</h1>
-					<NewTaskForm 
-            setTasks = {setTasks} 
-            onNewTask = {newTask}
+      <form onSubmit={handleSubmit}>
+        <section className="todoapp">
+          <header className="header">
+            <h1>todos</h1>
+            <NewTaskForm 
+              onNewTask = {newTask}
+            />
+          </header>
+          <section className="main">
+            <TaskList tasks={
+              currentFilter === 'All' 
+                ? tasks : currentFilter === 'Active' 
+                  ? tasks.filter((task) => !task.completed) 
+                  : tasks.filter((task) => task.completed)
+            } 
+            onDelete={deleteTask} 
+            onToggleCompleted={toggleCompleted}
+            onEditing={changeEditing}
+            onDescription={changeDescrtiption}
+            />
+          </section>
+          <Footer
+            tasksListCount = {tasksListCount}
+            currentFilter = {currentFilter}
+            onChangeFilter = {onChangeFilter}
+            deleteTaskAllEnd = {deleteTaskAllEnd}
           />
-				</header>
-				<section className="main">
-					<TaskList tasks={
-						currentFilter === 'All' 
-							? tasks : currentFilter === 'Active' 
-								? tasks.filter((task) => !task.completed) 
-								: tasks.filter((task) => task.completed)
-					} 
-          onDelete={deleteTask} 
-          onToggleCompleted={toggleCompleted}
-          onEditing={changeEditing}
-          onDescrtiption={changeDescrtiption}
-          />
-				</section>
-				<Footer
-					tasksListCount = {tasksListCount}
-					currentFilter = {currentFilter}
-					onChangeFilter = {onChangeFilter}
-          deleteTaskAll = {deleteTaskAll}
-				/>
-			</section>
+        </section>
+      </form>
 		</>
 	);
 }

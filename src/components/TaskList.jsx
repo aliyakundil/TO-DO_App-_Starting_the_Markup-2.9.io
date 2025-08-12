@@ -1,6 +1,6 @@
 import Task from "./Task"
 
-function TaskList({ tasks = [], onDelete, onToggleCompleted, onEditing, onDescrtiption }) {
+function TaskList({ tasks = [], onDelete, onToggleCompleted, onEditing, onDescription }) {
 	return (
 		<ul className="todo-list">
 			{tasks.map((task) => {
@@ -11,7 +11,7 @@ function TaskList({ tasks = [], onDelete, onToggleCompleted, onEditing, onDescrt
 						onDelete={onDelete}
 						onToggleCompleted={onToggleCompleted}
 						onEditing={onEditing}
-						onDescrtiption={onDescrtiption}
+						onDescription={onDescription}
 					/>
 				)
 			})}

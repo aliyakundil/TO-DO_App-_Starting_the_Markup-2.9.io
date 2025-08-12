@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function Task({ task, onToggleCompleted, onEditing, onDescrtiption, onDelete }) {
+function Task({ task, onToggleCompleted, onEditing, onDescription, onDelete }) {
   const listView = task.editing ? "editing" : task.completed ? "completed" : "";
   const [tempDescription, setTempDescription] = useState(task.description);
 
@@ -33,7 +33,7 @@ function Task({ task, onToggleCompleted, onEditing, onDescrtiption, onDelete }) 
           onChange={(e) => setTempDescription(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              onDescrtiption(task.id, tempDescription);
+              onDescription(task.id, tempDescription);
               onEditing(task.id);
             }
           }}
