@@ -32,6 +32,7 @@ function Task({ task, onToggleCompleted, onEditing, onDescription, onDelete }) {
           value={tempDescription}
           onChange={(e) => setTempDescription(e.target.value)}
           onKeyDown={(e) => {
+            e.preventDefault();
             if (e.key === "Enter") {
               onDescription(task.id, tempDescription);
               onEditing(task.id);

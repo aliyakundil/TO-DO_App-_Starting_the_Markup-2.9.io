@@ -15,7 +15,7 @@ function App() {
 			description: "Completed task",
 			created:
         "created " +
-        formatDistanceToNow(new Date("2025-07-01T12:00:00"), {
+        formatDistanceToNow(new Date(), {
         	addSuffix: true,
         }),
 			completed: true,
@@ -26,7 +26,7 @@ function App() {
 			description: "Editing task",
 			created:
         "created " +
-        formatDistanceToNow(new Date("2025-07-01T12:00:00"), {
+        formatDistanceToNow(new Date(), {
         	addSuffix: true,
         }),
 			completed: false,
@@ -37,7 +37,7 @@ function App() {
 			description: "Active task",
 			created:
         "created " +
-        formatDistanceToNow(new Date("2025-07-01T12:00:00"), {
+        formatDistanceToNow(new Date(), {
         	addSuffix: true,
         }),
 			completed: false,
@@ -95,7 +95,7 @@ function App() {
       description,
       created:
         "created " +
-        formatDistanceToNow(new Date("2025-07-01T12:00:00"), {
+        formatDistanceToNow(new Date(), {
           addSuffix: true,
         }),
       completed: false,

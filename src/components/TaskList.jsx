@@ -1,6 +1,11 @@
 import Task from "./Task"
 
-function TaskList({ tasks = [], onDelete, onToggleCompleted, onEditing, onDescription }) {
+function TaskList({ tasks, onDelete, onToggleCompleted, onEditing, onDescription }) {
+
+	TaskList.defaultProps = {
+		tasks: [],
+	}
+
 	return (
 		<ul className="todo-list">
 			{tasks.map((task) => {

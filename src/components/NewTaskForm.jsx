@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types'
 
 function NewTaskForm({ onNewTask }) {
 	const [tempDescription, setTempDescription] = useState("");
@@ -12,12 +13,17 @@ function NewTaskForm({ onNewTask }) {
 		onChange={(e) => setTempDescription(e.target.value)}
 		onKeyDown={(e) => {
 			if (e.key === "Enter" && tempDescription.trim()) {
+				e.preventDefault();
 				onNewTask(tempDescription.trim());
-				setTempDescription(""); // очистим поле после добавления
+				setTempDescription(""); 
 			}
 		}}
 		/>
 	)
+}
+
+NewTaskForm.propTypes = {
+		onNewTask: PropTypes.func.isRequired,
 }
 
 export default NewTaskForm;
