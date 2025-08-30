@@ -1,5 +1,4 @@
 import "./App.css";
-import { formatDistanceToNow } from "date-fns";
 import TaskList from "./components/TaskList";
 import NewTaskForm from "./components/NewTaskForm";
 import Footer from "./components/Footer";
@@ -13,33 +12,21 @@ function App() {
 		{
 			id: uuidv4(),
 			description: "Completed task",
-			created:
-        "created " +
-        formatDistanceToNow(new Date(), {
-        	addSuffix: true,
-        }),
+			created: new Date(),
 			completed: true,
 			editing: false,
 		},
 		{
 			id: uuidv4(),
 			description: "Editing task",
-			created:
-        "created " +
-        formatDistanceToNow(new Date(), {
-        	addSuffix: true,
-        }),
+			created: new Date(),
 			completed: false,
 			editing: false,
 		},
 		{
 			id: uuidv4(),
 			description: "Active task",
-			created:
-        "created " +
-        formatDistanceToNow(new Date(), {
-        	addSuffix: true,
-        }),
+			created: new Date(),
 			completed: false,
 			editing: false,
 		},
@@ -76,7 +63,7 @@ function App() {
   function changeEditing(id) {
     setTasks(prevTask => 
       prevTask.map(task => 
-        task.id === id ? {...task, editing: !task.editing} : task 
+        task.id === id ? {...task, editing: !task.editing, completed: false} : task 
       )
     );
   };
@@ -93,16 +80,12 @@ function App() {
     const task = {
       id: uuidv4(),
       description,
-      created:
-        "created " +
-        formatDistanceToNow(new Date(), {
-          addSuffix: true,
-        }),
+      created: new Date(),
       completed: false,
       editing: false,
     }
 
-    setTasks((prevTasks) => [...prevTasks, task]);
+    setTasks((prevTasks) => [task, ...prevTasks]);
   }
 
   function handleSubmit(e) {
